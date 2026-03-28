@@ -17,7 +17,7 @@ class SuperMarioBrosCrossover {
         this.ctx = this.canvas.getContext('2d');
         
         // Instantiate managers
-        this.gameStateManager = GameStateManager;
+        this.gameStateManager = new GameStateManager();
         this.buttonManager = ButtonManager;
         this.statManager = StatManager;
         this.screenManager = ScreenManager;
