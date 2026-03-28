@@ -7,6 +7,8 @@ export default class TitleScreen {
         this.game = game;
         this.game.gameStateManager.gameState = GameStates.TITLE_SCREEN;
 
+        // Register the image as a resource to load
+        this.game.screenManager.addResource();
         this.game.graphicsManager.loadImage(ImageNames.TITLE_LOGO, 'img/exploding_rabbit_logo.png');
     }
 
@@ -25,11 +27,6 @@ export default class TitleScreen {
         const titleLogo = this.game.graphicsManager.getImage(ImageNames.TITLE_LOGO);
         if (titleLogo) {
             ctx.drawImage(titleLogo, this.game.canvas.width / 2 - titleLogo.width / 2, 100);
-        } else {
-            ctx.fillStyle = 'white';
-            ctx.font = '32px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('Super Mario Bros. Crossover', this.game.canvas.width / 2, 150);
         }
 
         ctx.fillStyle = 'white';

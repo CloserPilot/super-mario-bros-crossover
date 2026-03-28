@@ -16,18 +16,17 @@ class GraphicsManager extends MainManager {
     }
 
     loadImage(imageName, imageUrl) {
-        return new Promise((resolve, reject) => {
-            const image = new Image();
-            image.onload = () => {
-                this.images[imageName] = image;
-                resolve(image);
-            };
-            image.onerror = (error) => {
-                console.error(`Error loading image: ${imageName} from ${imageUrl}`);
-                reject(error);
-            };
-            image.src = imageUrl;
-        });
+        const image = new Image();
+        image.onload = () => {
+            this.images[imageName] = image;
+            this.game.screenManager.resourceLoaded();
+        };
+        image.onerror = (error) => {
+            console.error(`Error loading image: ${imageName} from ${imageUrl}`);
+            // We should still count this as a loaded resource to avoid getting stuck
+            this.game.screenManager.resourceLoaded();
+        };
+        image.src = imageUrl;
     }
 
     getImage(imageName) {
