@@ -1,84 +1,78 @@
-import GameStateManager from './managers/GameStateManager.js';
-import ButtonManager from './managers/ButtonManager.js';
-import StatManager from './managers/StatManager.js';
-import ScreenManager from './managers/ScreenManager.js';
-import EventManager from './managers/EventManager.js';
-import SoundManager from './managers/SoundManager.js';
-import GraphicsManager from './managers/GraphicsManager.js';
-import LevelManager from './managers/LevelManager.js';
-import LevelDataManager from './managers/LevelDataManager.js';
-import MessageBoxManager from './managers/MessageBoxManager.js';
-import TextManager from './managers/TextManager.js';
-import TutorialManager from './managers/TutorialManager.js';
+console.log("Debug main.js running");
 
-class SuperMarioBrosCrossover {
-    constructor() {
-        this.canvas = document.getElementById('gameCanvas');
-        this.ctx = this.canvas.getContext('2d');
+async function run() {
+    const canvas = document.getElementById('gameCanvas');
+    if (!canvas) {
+        console.error("Canvas not found!");
+        return;
+    }
+    const ctx = canvas.getContext('2d');
+
+    try {
+        console.log("Fetching XML...");
+        const response = await fetch('assets/documents/levelDataSmb.xml');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const xmlText = await response.text();
+        console.log("XML fetched.");
+
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+
+        const parserError = xmlDoc.querySelector('parsererror');
+        if (parserError) {
+            console.error('Error parsing XML:', parserError.textContent);
+            throw new Error('XML parsing error');
+        }
+        console.log("XML parsed.");
+
+        const levelNode = xmlDoc.querySelector('LEVEL[ID="1-1"]');
+        if (!levelNode) {
+            throw new Error("Level 1-1 not found");
+        }
+        console.log("Level 1-1 node found.");
         
-        // Instantiate managers
-        this.gameStateManager = GameStateManager;
-        this.buttonManager = ButtonManager;
-        this.statManager = StatManager;
-        this.screenManager = ScreenManager;
-        this.eventManager = EventManager;
-        this.soundManager = SoundManager;
-        this.graphicsManager = GraphicsManager;
-        this.levelManager = LevelManager;
-        this.levelDataManager = LevelDataManager;
-        this.messageBoxManager = MessageBoxManager;
-        this.textManager = TextManager;
-        this.tutorialManager = TutorialManager;
+        const areaNode = levelNode.querySelector('AREA[ID="a"]');
+        const mapNode = areaNode.querySelector('MAP');
+        const mapText = mapNode.textContent.trim();
+        const mapRows = mapText.split('],');
+        const mapData = mapRows.map(row => 
+            row.replace(/[\r\n\[\]]/g, '').split(',').filter(cell => cell)
+        );
+        console.log("Map data parsed from XML.");
 
-        this.lastTime = 0;
-    }
+        // Draw the map
+        ctx.fillStyle = '#5c94fc'; // Blue sky color
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        const TILE_SIZE = 16;
+        for (let row = 0; row < mapData.length; row++) {
+            for (let col = 0; col < mapData[row].length; col++) {
+                const tile = mapData[row][col];
+                if (tile && tile !== '0') {
+                    let color = 'gray'; // Default color for unknown tiles
+                    if (tile.includes('ground')) {
+                        color = '#E57373'; // A reddish color for ground
+                    } else if (tile.includes('brick')) {
+                        color = '#A1887F'; // A brownish color for bricks
+                    } else if (tile.includes('itemBlock')) {
+                        color = '#FFB74D'; // An orange color for item blocks
+                    }
+                    ctx.fillStyle = color;
+                    ctx.fillRect(col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                }
+            }
+        }
+        console.log("Map drawn.");
 
-    async init() {
-        console.log('Initializing Super Mario Bros. Crossover');
-
-        // Initialize managers
-        this.gameStateManager.initiate(this);
-        this.buttonManager.initiate(this);
-        this.statManager.initiate(this);
-        this.screenManager.initiate(this);
-        this.eventManager.initiate(this);
-        this.soundManager.initiate(this);
-        this.graphicsManager.initiate(this);
-        this.levelManager.initiate(this);
-        this.levelDataManager.initiate(this);
-        this.messageBoxManager.initiate(this);
-        this.textManager.initiate(this);
-        this.tutorialManager.initiate(this);
-
-        // Load initial level
-        const initialLevelID = '1-1';
-        await this.levelDataManager.loadLevelData(initialLevelID);
-        this.levelManager.loadNewLevel(initialLevelID);
-
-        this.startGameLoop(0);
-    }
-
-    startGameLoop(timestamp) {
-        const dt = (timestamp - this.lastTime) / 1000;
-        this.lastTime = timestamp;
-
-        this.update(dt || 0);
-        this.draw();
-
-        requestAnimationFrame(this.startGameLoop.bind(this));
-    }
-
-    update(dt) {
-        this.screenManager.update(dt);
-    }
-
-    draw() {
-        this.screenManager.draw(this.ctx);
+    } catch (error) {
+        console.error("An error occurred:", error);
+        ctx.fillStyle = 'red';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        ctx.font = '20px Arial';
+        ctx.fillText(error.message, 10, 50);
     }
 }
 
-// Entry point
-window.onload = () => {
-    const game = new SuperMarioBrosCrossover();
-    game.init();
-};
+window.onload = run;
