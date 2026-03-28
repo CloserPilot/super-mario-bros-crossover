@@ -1,0 +1,240 @@
+# 🧩 Level Data File – README
+
+## 📌 Descripción general
+
+Este archivo define completamente un nivel de un videojuego tipo **plataformas (estilo Mario)**.
+
+Contiene toda la información necesaria para que el motor del juego pueda **construir y renderizar un nivel jugable**, incluyendo:
+
+* Terreno
+* Enemigos
+* Objetos interactivos
+* Decoración
+* Eventos del juego
+* Reglas de dificultad
+
+---
+
+## 🧠 ¿Qué hace este archivo?
+
+Este archivo **no ejecuta lógica por sí mismo**.
+
+Su propósito es ser leído por el motor del juego, el cual:
+
+1. Carga el archivo
+2. Interpreta su estructura
+3. Genera el nivel en memoria
+4. Renderiza el entorno jugable
+
+---
+
+## 🏗️ Estructura del archivo
+
+### 1. Nodo raíz
+
+```xml
+<LEVELDATA>
+```
+
+Contiene uno o más niveles.
+
+---
+
+### 2. Definición de nivel
+
+```xml
+<LEVEL ID="1-1" TIME="400" MAIN_AREA="a" HW_AREA="a" LOCKED_CP="False">
+```
+
+#### Atributos:
+
+| Atributo    | Descripción                          |
+| ----------- | ------------------------------------ |
+| `ID`        | Identificador del nivel              |
+| `TIME`      | Tiempo límite                        |
+| `MAIN_AREA` | Área principal                       |
+| `HW_AREA`   | Área alternativa (hard mode)         |
+| `LOCKED_CP` | Indica si hay checkpoints bloqueados |
+
+---
+
+### 3. Áreas
+
+```xml
+<AREA ID="a" TYPE="normal">
+```
+
+Permiten dividir un nivel en secciones (por ejemplo: mundo principal, subterráneo, etc.).
+
+---
+
+### 4. Mapa (`MAP`)
+
+```xml
+<MAP>
+0,0,groundBlock,enemyGoomba,...
+```
+
+Es una **matriz (grid)** donde cada valor representa un elemento del juego.
+
+---
+
+## 🧱 Tipos de elementos en el mapa
+
+### 1. Terreno
+
+Define estructuras sólidas:
+
+* `groundBlock`
+* `brick`
+* `groundPipeMidLeft`
+
+---
+
+### 2. Enemigos
+
+Define entidades hostiles:
+
+* `enemyGoomba`
+* `enemyKoopaRed`
+* `enemyPiranha`
+
+---
+
+### 3. Objetos interactivos
+
+Elementos con los que el jugador puede interactuar:
+
+* `coin`
+* `itemBlock`
+* `itemBlockInvisible`
+* `flagPole`
+
+---
+
+### 4. Decoración
+
+Elementos visuales sin impacto en gameplay:
+
+* `cloudSingle`
+* `treeBigTop`
+* `fence`
+
+---
+
+### 5. Eventos especiales
+
+Controlan el flujo del nivel:
+
+* `playerStart` → punto de inicio
+* `halfwayPoint` → checkpoint
+* `flagPole` → final del nivel
+* `levelExit` → salida definitiva
+
+---
+
+## ⚙️ Modificadores y lógica
+
+Los elementos pueden incluir modificadores usando `&&`.
+
+### Ejemplo:
+
+```
+coin&&HideOnDifficulties=normalhard
+```
+
+#### Significado:
+
+* La moneda solo aparece en ciertas dificultades
+
+---
+
+### Modificadores comunes
+
+| Modificador          | Descripción                              |
+| -------------------- | ---------------------------------------- |
+| `HideOnDifficulties` | Oculta el objeto en ciertas dificultades |
+| `shiftRight`         | Desplaza el objeto a la derecha          |
+| `shiftUp`            | Desplaza el objeto hacia arriba          |
+| `ContainedItem`      | Define contenido interno                 |
+| `Invisible`          | Hace el objeto invisible                 |
+
+---
+
+## 🔄 Flujo de ejecución
+
+El motor del juego procesa el archivo de la siguiente manera:
+
+1. Lee el XML
+2. Identifica el nivel y sus áreas
+3. Procesa el `MAP`
+4. Recorre cada celda:
+
+   * Genera bloques
+   * Coloca enemigos
+   * Inserta objetos
+5. Aplica modificadores
+6. Construye el nivel final
+
+---
+
+## 📤 Salida
+
+La salida de este archivo es:
+
+> 🎮 **Un nivel completamente jugable dentro del juego**
+
+Incluye:
+
+* Plataformas
+* Enemigos
+* Monedas
+* Obstáculos
+* Meta final
+
+---
+
+## 🧠 Resumen
+
+* Es un archivo de configuración de nivel
+* Usa una matriz para representar el mapa
+* Cada celda define un objeto del juego
+* Incluye lógica de comportamiento y dificultad
+* Es interpretado por el motor para generar gameplay
+
+---
+
+## 🚀 Posibles usos
+
+* Crear niveles personalizados
+* Ajustar dificultad
+* Diseñar mecánicas de juego
+* Debuggear mapas
+
+---
+
+## 🛠️ Notas
+
+* El archivo puede ser extremadamente grande debido al tamaño del mapa
+* Los valores `0` representan espacios vacíos
+* La combinación de múltiples modificadores permite comportamiento complejo
+
+---
+
+## 📎 Ejemplo simplificado
+
+```
+0,0,groundBlock,groundBlock,coin,enemyGoomba,flagPole
+```
+
+Representa:
+
+* Espacio vacío
+* Suelo
+* Moneda
+* Enemigo
+* Meta
+
+---
+
+Si necesitas modificar este archivo o generar uno nuevo automáticamente, puedes hacerlo manipulando directamente la matriz del `MAP`.

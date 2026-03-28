@@ -1,0 +1,295 @@
+# 🧩 Level Data File (cosas2.txt) – README
+
+## 📌 Descripción general
+
+Este archivo define múltiples niveles completos de un videojuego tipo **plataformas estilo Mario**.
+
+A diferencia de archivos simples, este contiene:
+
+* Varios niveles (`LEVEL`)
+* Diferentes tipos de áreas (normal, castillo, plataforma, etc.)
+* Eventos avanzados (transiciones, enemigos dinámicos, triggers)
+* Lógica por dificultad
+
+👉 Es básicamente un **paquete completo de mundos/jugabilidad**
+
+---
+
+## 🧠 ¿Qué hace este archivo?
+
+Este archivo:
+
+* Define **cómo se construyen múltiples niveles**
+* Es leído por el motor del juego
+* Se usa para generar **toda la experiencia jugable**
+
+---
+
+## 🏗️ Estructura general
+
+### 1. Nodo raíz
+
+```xml
+<LEVELDATA>
+```
+
+Contiene todos los niveles del juego. 
+
+---
+
+### 2. Niveles (`LEVEL`)
+
+Ejemplo:
+
+```xml
+<LEVEL ID="9-1" TIME="400" MAIN_AREA="a" HW_AREA="a" LOCKED_CP="False">
+```
+
+#### Atributos:
+
+| Atributo    | Descripción               |
+| ----------- | ------------------------- |
+| `ID`        | Nivel (ej: 1-1, 9-1, 8-4) |
+| `TIME`      | Tiempo límite             |
+| `MAIN_AREA` | Área principal            |
+| `HW_AREA`   | Área alternativa          |
+| `LOCKED_CP` | Checkpoints bloqueados    |
+
+👉 Este archivo contiene **muchos niveles distintos**, no solo uno. 
+
+---
+
+### 3. Áreas (`AREA`)
+
+```xml
+<AREA ID="a" TYPE="castle">
+```
+
+Tipos encontrados:
+
+* `normal`
+* `castle`
+* `platform`
+* `cheepCheep`
+
+👉 Esto cambia completamente el comportamiento del nivel (física, enemigos, ambientación)
+
+---
+
+### 4. MAP (la parte clave)
+
+```xml
+<MAP>
+0,0,cloudSingle,...
+```
+
+Es una **matriz gigante** donde cada celda define algo.
+
+
+
+---
+
+## 🧱 ¿Qué guarda este archivo?
+
+### 1. Terreno
+
+Ejemplos:
+
+* `groundNormal`
+* `groundBlock`
+* `groundWideNormal`
+
+👉 Define plataformas y suelo
+
+---
+
+### 2. Decoración
+
+Ejemplos:
+
+* `cloudSingle`
+* `cloudDouble`
+* `bushGreen`
+* `hillMedium`
+
+👉 Solo visual 
+
+---
+
+### 3. Jugador y spawn
+
+Ejemplo:
+
+```
+playerStart&&shiftRight
+```
+
+👉 Define dónde inicia el jugador 
+
+---
+
+### 4. Enemigos y eventos dinámicos
+
+Ejemplos reales del archivo:
+
+* `enemyWingedKoopaGreen`
+* `flyingCheepStart / flyingCheepEnd`
+* `bowserFireBallStart`
+
+👉 No solo colocan enemigos, también activan comportamientos 
+
+---
+
+### 5. Eventos especiales / triggers
+
+Este archivo introduce cosas más avanzadas:
+
+#### 🔹 Transiciones
+
+* `pitTransferStart`
+* `pitTransferEnd`
+
+👉 Teletransportan entre áreas 
+
+---
+
+#### 🔹 Lianas
+
+* `vineStart`
+
+👉 Permiten subir a otra zona 
+
+---
+
+#### 🔹 Eventos enemigos globales
+
+* `lakituStart`
+* `lakituEnd`
+
+👉 Activan enemigos que no dependen de posición fija 
+
+---
+
+### 6. Objetos interactivos
+
+Ejemplo:
+
+```
+itemBlockInvisible&&ContainedItem=HudsonBee&&Invisible
+```
+
+👉 Bloque invisible con item dentro 
+
+---
+
+## ⚙️ Sistema de modificadores
+
+Los elementos usan lógica avanzada con `&&` y `()`:
+
+### Ejemplo real:
+
+```
+groundNormal&&HideOnDifficulties=hard()colorRed&&HideOnDifficulties=easynormal
+```
+
+
+
+### Significado:
+
+* Cambia el bloque dependiendo de dificultad
+* Puede combinar múltiples estados
+
+---
+
+### Modificadores comunes
+
+| Modificador          | Función                             |
+| -------------------- | ----------------------------------- |
+| `HideOnDifficulties` | Oculta en ciertas dificultades      |
+| `shiftRight`         | Mueve el objeto                     |
+| `ContainedItem`      | Contenido interno                   |
+| `Invisible`          | No visible                          |
+| `WideCharacter`      | Cambia comportamiento por personaje |
+
+---
+
+## 🔄 Flujo de ejecución
+
+El motor del juego hace:
+
+1. Lee `<LEVELDATA>`
+2. Itera cada `<LEVEL>`
+3. Procesa cada `<AREA>`
+4. Lee el `MAP`
+5. Por cada celda:
+
+   * Genera terreno
+   * Spawnea enemigos
+   * Ejecuta triggers
+6. Aplica reglas de dificultad
+7. Activa eventos dinámicos
+
+---
+
+## 📤 Salida
+
+La salida de este archivo es:
+
+> 🎮 **Múltiples niveles jugables completos**
+
+Incluye:
+
+* Mundos completos (1-1, 2-4, 8-4, etc.)
+* Diferentes tipos de gameplay (agua, castillo, plataformas)
+* Eventos dinámicos
+* IA de enemigos
+
+---
+
+## 🧠 Diferencias vs el archivo anterior
+
+| Archivo anterior     | Este archivo                 |
+| -------------------- | ---------------------------- |
+| 1 nivel              | Muchos niveles               |
+| Básico               | Complejo                     |
+| Pocos eventos        | Eventos dinámicos            |
+| Poco uso de triggers | Sistema completo de triggers |
+
+---
+
+## 🚀 Capacidades del sistema
+
+Este formato permite:
+
+* Crear mundos completos
+* Cambiar dificultad dinámicamente
+* Definir comportamiento de enemigos
+* Crear niveles con mecánicas únicas
+* Controlar eventos globales
+
+---
+
+## 📎 Ejemplo simplificado
+
+```
+0,0,playerStart,groundNormal,enemyKoopa,coin,flagPole
+```
+
+---
+
+## 🛠️ Notas importantes
+
+* `0` = espacio vacío
+* El mapa puede ser extremadamente grande
+* Los eventos pueden abarcar múltiples celdas
+* Los modificadores permiten lógica compleja sin código
+
+---
+
+## 🔥 Resumen
+
+* Es un archivo de **definición de múltiples niveles**
+* Usa un sistema de **grid + eventos**
+* Incluye lógica avanzada de gameplay
+* Controla enemigos, físicas y triggers
+* Genera **experiencia completa del juego**

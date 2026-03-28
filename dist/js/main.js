@@ -6,6 +6,9 @@ import EventManager from './managers/EventManager.js';
 import SoundManager from './managers/SoundManager.js';
 import GraphicsManager from './managers/GraphicsManager.js';
 import LevelManager from './managers/LevelManager.js';
+import MessageBoxManager from './managers/MessageBoxManager.js';
+import TextManager from './managers/TextManager.js';
+import TutorialManager from './managers/TutorialManager.js';
 import TitleScreen from './screens/TitleScreen.js';
 
 class SuperMarioBrosCrossover {
@@ -22,6 +25,9 @@ class SuperMarioBrosCrossover {
         this.soundManager = SoundManager;
         this.graphicsManager = GraphicsManager;
         this.levelManager = LevelManager;
+        this.messageBoxManager = MessageBoxManager;
+        this.textManager = TextManager;
+        this.tutorialManager = TutorialManager;
 
         this.lastTime = 0;
     }
@@ -38,6 +44,9 @@ class SuperMarioBrosCrossover {
         this.soundManager.initiate(this);
         this.graphicsManager.initiate(this);
         this.levelManager.initiate(this);
+        this.messageBoxManager.initiate(this);
+        this.textManager.initiate(this);
+        this.tutorialManager.initiate(this);
 
         // Set the initial screen
         this.screenManager.changeScreen(new TitleScreen());

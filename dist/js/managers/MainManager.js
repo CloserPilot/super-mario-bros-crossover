@@ -22,6 +22,7 @@ export default class MainManager {
         this.txtMngr = game.textManager;
         this.tutMngr = game.tutorialManager;
         this.grMngr = game.graphicsManager;
+        this.lvlMngr = game.levelManager;
     }
 
     clearLevelRefs() {
