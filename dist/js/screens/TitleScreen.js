@@ -7,7 +7,7 @@ export default class TitleScreen {
         this.game = game;
         this.game.gameStateManager.gameState = GameStates.TITLE_SCREEN;
 
-        this.game.graphicsManager.loadImage(ImageNames.TITLE_LOGO, 'dist/img/title-logo.png');
+        this.game.graphicsManager.loadImage(ImageNames.TITLE_LOGO, 'img/exploding_rabbit_logo.png');
     }
 
     update(dt) {
