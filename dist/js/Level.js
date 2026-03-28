@@ -29,18 +29,33 @@ export default class Level {
             ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             ctx.fillStyle = 'white';
             ctx.font = '20px Arial';
-            ctx.fillText('Error: Level data not loaded!', 20, 40);
+            ctx.fillText('Error: Level data not loaded or parsed correctly!', 20, 40);
             return;
         }
 
-        ctx.fillStyle = 'blue';
+        ctx.fillStyle = '#5c94fc'; // Blue sky color
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
         for (let row = 0; row < this.levelData.map.length; row++) {
             for (let col = 0; col < this.levelData.map[row].length; col++) {
                 const tile = this.levelData.map[row][col];
                 if (tile !== '0') {
-                    ctx.fillStyle = 'red';
+                    let color = 'gray'; // Default color for unknown tiles
+                    if (tile.includes('ground')) {
+                        color = '#E57373'; // A reddish color for ground
+                    } else if (tile.includes('brick')) {
+                        color = '#A1887F'; // A brownish color for bricks
+                    } else if (tile.includes('itemBlock')) {
+                        color = '#FFB74D'; // An orange color for item blocks
+                    } else if (tile.includes('cloud')) {
+                        color = '#FFFFFF'; // White for clouds
+                    } else if (tile.includes('bush')) {
+                        color = '#81C784'; // Green for bushes
+                    } else if (tile.includes('hill')) {
+                        color = '#A5D6A7'; // Lighter green for hills
+                    }
+
+                    ctx.fillStyle = color;
                     ctx.fillRect(col * this.TILE_SIZE, row * this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE);
                 }
             }
