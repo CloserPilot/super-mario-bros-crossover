@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="sample.libgme"><apiName>sample.libgme</apiName><apiDetail/><apiClassifier id="sample.libgme:CModule"><apiName>CModule</apiName><shortdesc>
+Contains convenience functions for reading and writting to domainMemory; also manages any flascc-specific global state (for example, the VFS and Posix interface implementations.)
+</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+Contains convenience functions for reading and writting to domainMemory; also manages any flascc-specific global state (for example, the VFS and Posix interface implementations.)
+</apiDesc></apiClassifierDetail><apiOperation id="sample.libgme:CModule:callI"><apiName>callI</apiName><shortdesc>
+  Low level API for calling a C/C++ function from Actionscript, returning a 32-bit value
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>The integer return value of the function. As above, to return complex (possibly AS3)
+          types you should annotate the function as explained in the interop tutorial
+          to give the function a more natural signature and return type.
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>functionPtr</apiItemName><apiType value="int"/><apiDesc>The address of the function. You can find the address of a C/C++
+             function by passing the name of the function to <codeph>getPublicSym</codeph>.
+  </apiDesc></apiParam><apiParam><apiItemName>args</apiItemName><apiType value="Vector$int"/><apiDesc>A Vector containing 32-bit values to pass on the stack to
+              the function. These could either be primitive integer data, or pointers.
+              To pass more complex data types (including AS3 types) you should use the
+              function annotation syntax explained in the interop tutorial to give the
+              function a mopre natural AS3 function signature.
+  </apiDesc></apiParam><apiParam><apiItemName>stack</apiItemName><apiType value="int"/><apiData>0</apiData><apiDesc>An optional pointer to the base of the stack. A value of 0 means use the
+               current ESP.
+  </apiDesc></apiParam><apiParam><apiItemName>preserveStack</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>Indicates whether the stack pointer should unwind back to the value it was
+                       before the function was called.
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Low level API for calling a C/C++ function from Actionscript, returning a 32-bit value
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:callN"><apiName>callN</apiName><shortdesc>
+  Low level API for calling a C/C++ function from Actionscript returning a 64-bit floating point value
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>The 64-bit floating point return value of the function. As above, to return complex (possibly AS3)
+          types you should annotate the function as explained in the interop tutorial
+          to give the function a more natural signature and return type.
+  </apiDesc><apiType value="Number"/></apiReturn><apiParam><apiItemName>functionPtr</apiItemName><apiType value="int"/><apiDesc>The address of the function. You can find the address of a C/C++
+             function by passing the name of the function to <codeph>getPublicSym</codeph>.
+  </apiDesc></apiParam><apiParam><apiItemName>args</apiItemName><apiType value="Vector$int"/><apiDesc>A Vector containing 32-bit values to pass on the stack to
+              the function. These could ewither be primitive integer data, or pointers.
+              To pass more complex data types (including AS3 types) you should use the
+              function annotation syntax explained in the interop tutorial to give the
+              function a mopre natural AS3 function signature.
+  </apiDesc></apiParam><apiParam><apiItemName>stack</apiItemName><apiType value="int"/><apiData>0</apiData><apiDesc>An optional pointer to the base of the stack. A value of 0 means use the
+               current ESP.
+  </apiDesc></apiParam><apiParam><apiItemName>preserveStack</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>Indicates whether the stack pointer should unwind back to the value it was
+                       before the function was called.
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Low level API for calling a C/C++ function from Actionscript returning a 64-bit floating point value
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:free"><apiName>free</apiName><shortdesc>
+  Free a pointer that was previously allocated using CModule.malloc().</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/></apiParam></apiOperationDef><apiDesc>
+  Free a pointer that was previously allocated using <codeph>CModule.malloc()</codeph>.
+    Internally this calls the libc implementation of <codeph>free()</codeph> so it can be used to free pointers allocated in C with <codeph>malloc()</codeph>.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:getPublicSymbol"><apiName>getPublicSymbol</apiName><shortdesc>
+  Lookup the specified publicly defined C/C++ symbol
+    </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>The address of the symbol. If the symbol was a POD type you can read it's
+          value using one of the read functions. If the symbol was a function then you can call it using callI.
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>name</apiItemName><apiType value="String"/><apiDesc>The name of the symbol to lookup, for example, "malloc"
+    </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Lookup the specified publicly defined C/C++ symbol
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:mallocString"><apiName>mallocString</apiName><shortdesc>
+  Allocate a buffer in domainMemory and write an actionscript string as UTF8 data into that buffer.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>The pointer to the buffer in domainMemory that contains the string. This must be manually
+          freed by passing this pointer to "free()"
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>s</apiItemName><apiType value="String"/><apiDesc>  The string you want to copy into domainMemory
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Allocate a buffer in domainMemory and write an actionscript string as UTF8 data into that buffer.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:malloc"><apiName>malloc</apiName><shortdesc>
+  Allocate size bytes of data within the domainMemory ByteArray.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>A pointer to a region of memory within domainMemory <i>size</i> bytes long.
+    Internally this calls the libc implementation of <codeph>malloc()</codeph> so the returned value should be treated as though it had been allocated in C with <codeph>malloc()</codeph>.
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>size</apiItemName><apiType value="int"/></apiParam></apiOperationDef><apiDesc>
+  Allocate <i>size</i> bytes of data within the domainMemory ByteArray. The memory must be freed using <codeph>CModule.free()</codeph>.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:read16"><apiName>read16</apiName><shortdesc>
+  Read a 16 bit value from domainMemory with zero padding to extend it to a 32 bit signed integer.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>A 16 bit integer zero padded to 32 bit.
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to read from
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Read a 16 bit value from domainMemory with zero padding to extend it to a 32 bit signed integer. This will always result in positive integers. 
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:read32"><apiName>read32</apiName><shortdesc>
+  Read a 32 bit value from domainMemory.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>A 32 bit integer.
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to read from
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Read a 32 bit value from domainMemory. 
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:read8"><apiName>read8</apiName><shortdesc>
+  Read an 8 bit value from domainMemory with zero padding to extend it to a 32 bit signed integer.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>An 8 bit integer zero padded to 32 bit.
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to read from
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Read an 8 bit value from domainMemory with zero padding to extend it to a 32 bit signed integer. This will always result in positive integers. 
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:readBytes"><apiName>readBytes</apiName><shortdesc>
+  Copy data from domainMemory into an object implementing the IDataOutput interface (ByteArray, FileStream, Socket etc)
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to start reading from.
+  </apiDesc></apiParam><apiParam><apiItemName>length</apiItemName><apiType value="uint"/><apiDesc>The number of bytes to copy from the domainMemory (starting from ptr)
+  </apiDesc></apiParam><apiParam><apiItemName>dst</apiItemName><apiType value="flash.utils:IDataOutput"/><apiDesc>The IDataOutput to copy data into (the current position in this IDataOutput will be respected and will increase by length)
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Copy data from domainMemory into an object implementing the IDataOutput interface (ByteArray, FileStream, Socket etc)
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:readDouble"><apiName>readDouble</apiName><shortdesc>
+  Read a 64 bit floating point value from domainMemory
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>A signed 64 bit floating point value
+  </apiDesc><apiType value="Number"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to read from
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Read a 64 bit floating point value from domainMemory
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:readFloat"><apiName>readFloat</apiName><shortdesc>
+  Read a 32 bit floating point value from domainMemory
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>A signed 32 bit floating point value
+  </apiDesc><apiType value="Number"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to read from
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Read a 32 bit floating point value from domainMemory
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:readIntVector"><apiName>readIntVector</apiName><shortdesc>
+  Read count integers from the offset ptr in domainMemory into a Vector of ints.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>A Vector of ints read from domainMemory
+  </apiDesc><apiType value="Vector$int"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The offset in domainMemory to read from
+  </apiDesc></apiParam><apiParam><apiItemName>count</apiItemName><apiType value="int"/><apiDesc>The number of 32 bit integers to read
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Read <i>count</i> integers from the offset <i>ptr</i> in domainMemory into a Vector of ints.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:readString"><apiName>readString</apiName><shortdesc>
+  Read UTF8 data from domainMemory and construct an Actionscript String
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>A String constructed from the UTF8 data found between ptr and ptr+length
+  </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The location in domainMemory to start reading from
+  </apiDesc></apiParam><apiParam><apiItemName>length</apiItemName><apiType value="int"/><apiDesc>The number of bytes to read
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Read UTF8 data from domainMemory and construct an Actionscript String
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:runningAsWorker"><apiName>runningAsWorker</apiName><shortdesc>
+  Console should use this function to check if the SWF
+  has been launched as an isolate so it can act appropriately
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+  Console should use this function to check if the SWF
+  has been launched as an isolate so it can act appropriately
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:serviceUIRequests"><apiName>serviceUIRequests</apiName><shortdesc>
+  This method services any pending uiThunk requests that background threads
+  have queued up.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+  This method services any pending uiThunk requests that background threads
+  have queued up. A good place to call this would be in the <codeph>enterFrame</codeph> handler.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:startAsync"><apiName>startAsync</apiName><shortdesc>
+  Calls the libc __start1 function which, in turn, causes main() to execute.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>console</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>The current Console object
+  </apiDesc></apiParam><apiParam><apiItemName>args</apiItemName><apiType value="Vector$String"/><apiData>null</apiData><apiDesc>A vector of Strings that are used to fill the argv array given to main. The first String is typically used to specify the name of the application.
+  </apiDesc></apiParam><apiParam><apiItemName>env</apiItemName><apiType value="Vector$String"/><apiData>null</apiData><apiDesc>A vector of Strings that are used to populate the environment variables accesible by <codeph>getenv()</codeph>. There should be an even number of Strings in this Vector as they are treated as name/value pairs.
+  </apiDesc></apiParam><apiParam><apiItemName>preserveStack</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Inidcates whether the C stack should be preserved after the call to <codeph>__start1</codeph>. If this is set to false the stack depth will return to the value when start() was called upon return.
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Calls the libc <codeph>__start1</codeph> function which, in turn, causes <codeph>main()</codeph> to execute. Unlike <codeph>start()</codeph>, this method handles the case where the main C run loop has been broken by a call to "AS3_GoAsync" within the C code. This allows main to return without allowing C/C++ static initializers to run. This should be used when you want to run long running code with a broken run-loop, or run some code as a library.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:startBackground"><apiName>startBackground</apiName><shortdesc>
+  Creates a background Worker and runs the libc function __start1 within that Worker.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>console</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>The current Console object
+  </apiDesc></apiParam><apiParam><apiItemName>args</apiItemName><apiType value="Vector$String"/><apiData>null</apiData><apiDesc>A vector of Strings that are used to fill the argv array given to main. The first String is typically used to specify the name of the application.
+  </apiDesc></apiParam><apiParam><apiItemName>env</apiItemName><apiType value="Vector$String"/><apiData>null</apiData><apiDesc>A vector of Strings that are used to populate the environment variables accesible by <codeph>getenv()</codeph>. There should be an even number of Strings in this Vector as they are treated as name/value pairs.
+  </apiDesc></apiParam><apiParam><apiItemName>afterStackSize</apiItemName><apiType value="int"/><apiData>65536</apiData><apiDesc>The amount of stack space to allocate for the ui thread (code that will run the uiThunk callbacks and also any calls to callI coming from the main Worker).
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Creates a background Worker and runs the libc function <codeph>__start1</codeph> within that Worker. This allows you to run main without breaking the run loop, but requires the SWF to be version 18 or higher (Flash Runtime 11.5).
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:start"><apiName>start</apiName><shortdesc>
+  Calls the libc __start1 function which, in turn, causes main() to execute.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>The exit code of the C application
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>console</apiItemName><apiType value="Object"/><apiDesc>The current Console object
+  </apiDesc></apiParam><apiParam><apiItemName>args</apiItemName><apiType value="Vector$String"/><apiDesc>A vector of Strings that are used to fill the argv array given to main. The first String is typically used to specify the name of the application.
+  </apiDesc></apiParam><apiParam><apiItemName>env</apiItemName><apiType value="Vector$String"/><apiDesc>A vector of Strings that are used to populate the environment variables accesible by <codeph>getenv()</codeph>. There should be an even number of Strings in this Vector as they are treated as name/value pairs.
+  </apiDesc></apiParam><apiParam><apiItemName>preserveStack</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Indicates whether the C stack should be preserved after the call to <codeph>__start1</codeph>. If this is set to false the stack depth will return to the value when start() was called upon return.
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Calls the libc <codeph>__start1</codeph> function which, in turn, causes <codeph>main()</codeph> to execute.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:write16"><apiName>write16</apiName><shortdesc>
+  Write the low 16 bits of value into domainMemory.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to write to
+  </apiDesc></apiParam><apiParam><apiItemName>value</apiItemName><apiType value="int"/><apiDesc>The value to write (only the low 16 bits are written)
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Write the low 16 bits of <i>value</i> into domainMemory.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:write32"><apiName>write32</apiName><shortdesc>
+  Write a 32 bit value into domainMemory
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to write to
+  </apiDesc></apiParam><apiParam><apiItemName>value</apiItemName><apiType value="int"/><apiDesc>The value to write
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Write a 32 bit value into domainMemory
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:write8"><apiName>write8</apiName><shortdesc>
+  Write the low 8 bits of value into domainMemory.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to write to
+  </apiDesc></apiParam><apiParam><apiItemName>value</apiItemName><apiType value="int"/><apiDesc>The value to write (only the low 8 bits are written)
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Write the low 8 bits of <i>value</i> into domainMemory.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:writeBytes"><apiName>writeBytes</apiName><shortdesc>
+  Copy the contents of an object that implements the IDataInput interface (ByteArray, FileStream, Socket etc) into domainMemory.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to start writting to
+  </apiDesc></apiParam><apiParam><apiItemName>length</apiItemName><apiType value="uint"/><apiDesc>The number of bytes to copy from the source bytearray (starting from source.position)
+  </apiDesc></apiParam><apiParam><apiItemName>source</apiItemName><apiType value="flash.utils:IDataInput"/><apiDesc>The IDataInput to copy data from (the current position in this IDataInput will be used, and will increase by length)
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Copy the contents of an object that implements the IDataInput interface (ByteArray, FileStream, Socket etc) into domainMemory.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:writeDouble"><apiName>writeDouble</apiName><shortdesc>
+  Write a Number as a 64 bit float into domainMemory
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to write to
+  </apiDesc></apiParam><apiParam><apiItemName>value</apiItemName><apiType value="Number"/><apiDesc>The value to write at the address
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Write a Number as a 64 bit float into domainMemory
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:writeFloat"><apiName>writeFloat</apiName><shortdesc>
+  Write a Number as a 32 bit float into domainMemory
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The address of the location in domainMemory to write to
+  </apiDesc></apiParam><apiParam><apiItemName>value</apiItemName><apiType value="Number"/><apiDesc>The value to write at the address (will be rounded to the nearest 32bit floating point value)
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Write a Number as a 32 bit float into domainMemory
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:writeIntVector"><apiName>writeIntVector</apiName><shortdesc>
+  Write a Vector of ints into domainMemory starting at offset ptr.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The offset in domainMemory to start writing to
+  </apiDesc></apiParam><apiParam><apiItemName>vec</apiItemName><apiType value="Vector$int"/><apiDesc>The Vector of ints to write into domainMemory
+  </apiDesc></apiParam></apiOperationDef><apiDesc>
+  Write a Vector of ints into domainMemory starting at offset <i>ptr</i>.
+  </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:CModule:writeString"><apiName>writeString</apiName><shortdesc>
+  Write an actionscript string as UTF8 data into domainMemory
+  </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>The number of bytes written
+  </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>ptr</apiItemName><apiType value="int"/><apiDesc>The location in domainMemory where the string will be written. You must ensure that this
+             points to a buffer in the flascc world that has enough space to hold the string
+             data or this method will overwrite other data within your program. Consider using
+             <codeph>mallocString</codeph> instead as it will allocate the correct amount of space.
+  </apiDesc></apiParam><apiParam><apiItemName>s</apiItemName><apiType value="String"/></apiParam></apiOperationDef><apiDesc>
+  Write an actionscript string as UTF8 data into domainMemory
+  </apiDesc></apiOperationDetail></apiOperation><apiValue id="sample.libgme:CModule:activeConsole"><apiName>activeConsole</apiName><shortdesc>
+  A reference to the current Console object, it is set when one of the start methods is called
+  </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiType value="Object"/></apiValueDef><apiDesc>
+  A reference to the current Console object, it is set when one of the start methods is called
+  </apiDesc></apiValueDetail></apiValue><apiValue id="sample.libgme:CModule:rootSprite"><apiName>rootSprite</apiName><shortdesc>
+    A reference to the current rootSprite so that flascc code has an easy way of getting to the stage regardless of what preloaders might be employed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiType value="flash.display:Sprite"/></apiValueDef><apiDesc>
+    A reference to the current rootSprite so that flascc code has an easy way of getting to the stage regardless of what preloaders might be employed.
+    </apiDesc></apiValueDetail></apiValue><apiValue id="sample.libgme:CModule:canUseWorkers:get"><apiName>canUseWorkers</apiName><shortdesc>
+  Returns true if the current environment supports
+  use of ActionScript Workers with flascc content
+  </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+  Returns true if the current environment supports
+  use of ActionScript Workers with flascc content
+  </apiDesc></apiValueDetail></apiValue><apiValue id="sample.libgme:CModule:kernel:get"><apiName>kernel</apiName><shortdesc>
+    Return the current kernel implementation
+    </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="readwrite"/><apiValueClassifier>sample.libgme.kernel:IKernel</apiValueClassifier></apiValueDef><apiDesc>
+    Return the current kernel implementation
+    </apiDesc></apiValueDetail></apiValue><apiValue id="sample.libgme:CModule:ram:get"><apiName>ram</apiName><shortdesc>
+  Returns the ByteArray object using as RAM 
+  </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiType value="flash.utils:ByteArray"/></apiValueDef><apiDesc>
+  Returns the ByteArray object using as RAM 
+  </apiDesc></apiValueDetail></apiValue><apiValue id="sample.libgme:CModule:throwWhenOutOfMemory:get"><apiName>throwWhenOutOfMemory</apiName><shortdesc>
+  Returns a boolean indicating whether Flash out of memory conditions when growing the domainMemory ByteArray will throw an ActionScript exception.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+  Returns a boolean indicating whether Flash out of memory conditions when growing the domainMemory ByteArray will throw an ActionScript exception. The default is false, malloc will return an appropriate failure and new/new[] will throw a std::badalloc C++ exception.
+  </apiDesc></apiValueDetail></apiValue><apiValue id="sample.libgme:CModule:vfs:get"><apiName>vfs</apiName><shortdesc>
+  The current VFS implementation
+  </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="readwrite"/><apiValueClassifier>sample.libgme.vfs:IVFS</apiValueClassifier></apiValueDef><apiDesc>
+  The current VFS implementation
+  </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="sample.libgme:Console"><apiName>Console</apiName><shortdesc>
+  A basic implementation of a console for FlasCC apps.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>sample.libgme.vfs:ISpecialFile</apiBaseInterface><apiBaseClassifier>flash.display:Sprite</apiBaseClassifier></apiClassifierDef><apiDesc>
+  A basic implementation of a console for FlasCC apps.
+  The PlayerKernel class delegates to this for things like read/write,
+  so that console output can be displayed in a TextField on the Stage.
+  </apiDesc></apiClassifierDetail><apiConstructor id="sample.libgme:Console:Console"><apiName>Console</apiName><shortdesc>
+    To Support the preloader case you might want to have the Console
+    act as a child of some other DisplayObjectContainer.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>container</apiItemName><apiType value="flash.display:DisplayObjectContainer"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+    To Support the preloader case you might want to have the Console
+    act as a child of some other DisplayObjectContainer.
+    </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="sample.libgme:Console:protected:consoleWrite"><apiName>consoleWrite</apiName><shortdesc>
+    Helper function that traces to the flashlog text file and also
+    displays output in the on-screen textfield console.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>s</apiItemName><apiType value="String"/></apiParam></apiOperationDef><apiDesc>
+    Helper function that traces to the flashlog text file and also
+    displays output in the on-screen textfield console.
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:Console:protected:enterFrame"><apiName>enterFrame</apiName><shortdesc>
+    The enterFrame callback is run once every frame.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>e</apiItemName><apiType value="flash.events:Event"/></apiParam></apiOperationDef><apiDesc>
+    The enterFrame callback is run once every frame. UI thunk requests should be handled
+    here by calling <codeph>CModule.serviceUIRequests()</codeph> (see CModule ASdocs for more information on the UI thunking functionality).
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:Console:exit"><apiName>exit</apiName><shortdesc>
+    The PlayerKernel implementation will use this function to handle
+    C process exit requests
+    </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>code</apiItemName><apiType value="int"/></apiParam></apiOperationDef><apiDesc>
+    The PlayerKernel implementation will use this function to handle
+    C process exit requests
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:Console:fcntl"><apiName>fcntl</apiName><shortdesc>
+    The PlayerKernel implementation uses this function to handle
+    C fcntl requests to the file "/dev/tty." 
+    See the ISpecialFile documentation for more information about the
+    arguments and return value.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="int"/></apiReturn><apiParam><apiItemName>fd</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>com</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>errnoPtr</apiItemName><apiType value="int"/></apiParam></apiOperationDef><apiDesc>
+    The PlayerKernel implementation uses this function to handle
+    C fcntl requests to the file "/dev/tty." 
+    See the ISpecialFile documentation for more information about the
+    arguments and return value.
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:Console:protected:init"><apiName>init</apiName><shortdesc>
+    All of the real FlasCC init happens in this method,
+    which is either run on startup or once the SWF has
+    been added to the stage.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>e</apiItemName><apiType value="flash.events:Event"/></apiParam></apiOperationDef><apiDesc>
+    All of the real FlasCC init happens in this method,
+    which is either run on startup or once the SWF has
+    been added to the stage.
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:Console:ioctl"><apiName>ioctl</apiName><shortdesc>
+    The PlayerKernel implementation uses this function to handle
+    C ioctl requests to the file "/dev/tty." 
+    See the ISpecialFile documentation for more information about the
+    arguments and return value.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="int"/></apiReturn><apiParam><apiItemName>fd</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>com</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>errnoPtr</apiItemName><apiType value="int"/></apiParam></apiOperationDef><apiDesc>
+    The PlayerKernel implementation uses this function to handle
+    C ioctl requests to the file "/dev/tty." 
+    See the ISpecialFile documentation for more information about the
+    arguments and return value.
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:Console:read"><apiName>read</apiName><shortdesc>
+    The PlayerKernel implementation uses this function to handle
+    C IO read requests to the file "/dev/tty" (for example, reads from stdin
+    will expect this function to provide the data).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="int"/></apiReturn><apiParam><apiItemName>fd</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>bufPtr</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>nbyte</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>errnoPtr</apiItemName><apiType value="int"/></apiParam></apiOperationDef><apiDesc>
+    The PlayerKernel implementation uses this function to handle
+    C IO read requests to the file "/dev/tty" (for example, reads from stdin
+    will expect this function to provide the data). See the ISpecialFile
+    documentation for more information about the arguments and return value.
+    </apiDesc></apiOperationDetail></apiOperation><apiOperation id="sample.libgme:Console:write"><apiName>write</apiName><shortdesc>
+    The PlayerKernel implementation uses this function to handle
+    C IO write requests to the file "/dev/tty" (for example, output from
+    printf will pass through this function).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="int"/></apiReturn><apiParam><apiItemName>fd</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>bufPtr</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>nbyte</apiItemName><apiType value="int"/></apiParam><apiParam><apiItemName>errnoPtr</apiItemName><apiType value="int"/></apiParam></apiOperationDef><apiDesc>
+    The PlayerKernel implementation uses this function to handle
+    C IO write requests to the file "/dev/tty" (for example, output from
+    printf will pass through this function). See the ISpecialFile
+    documentation for more information about the arguments and return value.
+    </apiDesc></apiOperationDetail></apiOperation><apiValue id="sample.libgme:Console:consoleText:get"><apiName>consoleText</apiName><shortdesc>
+    Provide a way to get the TextField's text.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+    Provide a way to get the TextField's text.
+    </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

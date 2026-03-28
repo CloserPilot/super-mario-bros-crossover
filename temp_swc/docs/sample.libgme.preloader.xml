@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="sample.libgme.preloader"><apiName>sample.libgme.preloader</apiName><apiDetail/><apiClassifier id="sample.libgme.preloader:DefaultPreloader"><apiName>DefaultPreloader</apiName><shortdesc>
+	By default, this preloader is injected into every flascc-generated SWF.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.display:MovieClip</apiBaseClassifier></apiClassifierDef><apiDesc>
+	By default, this preloader is injected into every flascc-generated SWF. After detecting that
+	the SWF has fully loaded, it constructs a new Console object, which should cause the SWF to execute.
+		<p>If a suitable HTTPBackingStore has been linked into the SWF, it will be be created and the SWF will only
+	start once the contents have been downloaded.</p>
+		<p>To replace the default preloader, you should compile this class to a SWF and tell gcc/g++ to use
+	it with the argument "-swf-preloader=foo.swf". Alternatively, if you don't want a preloader, use "-no-swf-preloader".</p>
+	</apiDesc></apiClassifierDetail><apiConstructor id="sample.libgme.preloader:DefaultPreloader:DefaultPreloader"><apiName>DefaultPreloader</apiName><shortdesc>
+		Construct the flascc preloader that is injected into every SWF by default.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		Construct the flascc preloader that is injected into every SWF by default.
+		</apiDesc></apiConstructorDetail></apiConstructor></apiClassifier></apiPackage>

@@ -29,6 +29,7 @@ class LevelManager extends MainManager {
 
     initiateLevel() {
         const level = new Level(this.game.statManager.currentLevelID, this.game.levelDataManager.currentLevelData, this.newAreaStatsArr, this.game.statManager.newLev);
+        console.log('Created level:', level);
         this.game.level = level; // Store the level reference in the game
         // The original ActionScript code adds the level to the display list.
         // In our JavaScript version, the ScreenManager will handle rendering.

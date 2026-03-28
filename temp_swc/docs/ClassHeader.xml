@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allClasses>
+   <apiPackage id="sample.libgme.kernel">
+      <apiName>sample.libgme.kernel</apiName>
+      <apiDetail/>
+      <apiClassifier id="sample.libgme.kernel:KernelConstants">
+         <apiName>KernelConstants</apiName>
+         <shortdesc>
+    This helper class contains constant values defined in the libc headers.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="KernelConstants,sample.libgme.kernel.KernelConstants,DT_BLK,DT_CHR,DT_DIR,DT_FIFO,DT_LNK,DT_REG,DT_SOCK,DT_UNKNOWN,DT_WHT,E2BIG,EACCESS,EBADF,EBUSY,ECHILD,EDEADLK,EEXIST,EFAULT,EFBIG,EINTR,EINVAL,EIO,EISDIR,EMFILE,EMLINK,ENFILE,ENODEV,ENOENT,ENOEXEC,ENOMEM,ENOSPC,ENOSYS,ENOTBLK,ENOTDIR,ENOTEMPTY,ENOTTY,ENXIO,EOVERFLOW,EPERM,EPIPE,EROFS,ESPIPE,ESRCH,ETXBSY,EXDEV,F_DUPFD,O_ACCMODE,O_APPEND,O_CREAT,O_DIRECT,O_EXCL,O_EXLOCK,O_FSYNC,O_NOFOLLOW,O_NONBLOCK,O_RDONLY,O_RDWR,O_SHLOCK,O_SYNC,O_TRUNC,O_WRONLY,SEEK_CUR,SEEK_END,SEEK_SET,S_IFBLK,S_IFCHR,S_IFDIR,S_IFIFO,S_IFLNK,S_IFREG,S_IFSOCK"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+    This helper class contains constant values defined in the libc headers.
+    </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.kernel:IKernel">
+         <apiName>IKernel</apiName>
+         <shortdesc> This interface exposes all of the FreeBSD kernel system calls.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="IKernel,sample.libgme.kernel.IKernel,__getcwd,__getcwd,access,access,chdir,chdir,chmod,chmod,chown,chown,chroot,chroot,clock_gettime,clock_gettime,close,close,dup,dup,dup2,dup2,fchdir,fchdir,fchmod,fchmod,fchown,fchown,fcntl,fcntl,fork,fork,fpathconf,fpathconf,fstat,fstat,fsync,fsync,getdirentries,getdirentries,getdtablesize,getdtablesize,getegid,getegid,geteuid,geteuid,getgid,getgid,getgroups,getgroups,getpgid,getpgid,getpgrp,getpgrp,getpid,getpid,getppid,getppid,getpriority,getpriority,getrusage,getrusage,getsid,getsid,getsockopt,getsockopt,getuid,getuid,ioctl,ioctl,issetugid,issetugid,kill,kill,lchown,lchown,link,link,listen,listen,lseek,lseek,lstat,lstat,mkdir,mkdir,mkfifo,mkfifo,msgget,msgget,msgrcv,msgrcv,msgsnd,msgsnd,msync,msync,nanosleep,nanosleep,open,open,pathconf,pathconf,pipe,pipe,pselect,pselect,read,read,readv,readv,rename,rename,revoke,revoke,rmdir,rmdir,sched_get_priority_max,sched_get_priority_max,sched_get_priority_min,sched_get_priority_min,sched_yield,sched_yield,semget,semget,setegid,setegid,seteuid,seteuid,setgid,setgid,setgroups,setgroups,setpgid,setpgid,setpriority,setpriority,setregid,setregid,setreuid,setreuid,setsid,setsid,setsockopt,setsockopt,setuid,setuid,shm_unlink,shm_unlink,shmdt,shmdt,shmget,shmget,shutdown,shutdown,sigpending,sigpending,sigprocmask,sigprocmask,sigsuspend,sigsuspend,sigwait,sigwait,socket,socket,socketpair,socketpair,stat,stat,symlink,symlink,sync,sync,umask,umask,unlink,unlink,vfork,vfork,wait4,wait4,write,write,writev,writev"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc> This interface exposes all of the FreeBSD kernel system calls. To provide reasonable implementations you will need to look at the BSD documentation and also at the BSD libc source code.</apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="sample.libgme.kernel:PlayerKernel"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.kernel:PlayerKernel">
+         <apiName>PlayerKernel</apiName>
+         <shortdesc>
+    This is the default implementation of the Posix interface.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="PlayerKernel,sample.libgme.kernel.PlayerKernel,__getcwd,__getcwd,access,access,chdir,chdir,chmod,chmod,chown,chown,chroot,chroot,clock_gettime,clock_gettime,close,close,dup,dup,dup2,dup2,fchdir,fchdir,fchmod,fchmod,fchown,fchown,fcntl,fcntl,fork,fork,fpathconf,fpathconf,fstat,fstat,fsync,fsync,getdirentries,getdirentries,getdtablesize,getdtablesize,getegid,getegid,geteuid,geteuid,getgid,getgid,getgroups,getgroups,getpgid,getpgid,getpgrp,getpgrp,getpid,getpid,getppid,getppid,getpriority,getpriority,getrusage,getrusage,getsid,getsid,getsockopt,getsockopt,getuid,getuid,ioctl,ioctl,issetugid,issetugid,kill,kill,lchown,lchown,link,link,listen,listen,lseek,lseek,lstat,lstat,mkdir,mkdir,mkfifo,mkfifo,msgget,msgget,msgrcv,msgrcv,msgsnd,msgsnd,msync,msync,nanosleep,nanosleep,open,open,pathconf,pathconf,pipe,pipe,pselect,pselect,read,read,readv,readv,rename,rename,revoke,revoke,rmdir,rmdir,sched_get_priority_max,sched_get_priority_max,sched_get_priority_min,sched_get_priority_min,sched_yield,sched_yield,semget,semget,setegid,setegid,seteuid,seteuid,setgid,setgid,setgroups,setgroups,setpgid,setpgid,setpriority,setpriority,setregid,setregid,setreuid,setreuid,setsid,setsid,setsockopt,setsockopt,setuid,setuid,shm_unlink,shm_unlink,shmdt,shmdt,shmget,shmget,shutdown,shutdown,sigpending,sigpending,sigprocmask,sigprocmask,sigsuspend,sigsuspend,sigwait,sigwait,socket,socket,socketpair,socketpair,stat,stat,symlink,symlink,sync,sync,umask,umask,unlink,unlink,vfork,vfork,wait4,wait4,write,write,writev,writev"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.kernel:IKernel</apiBaseInterface>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+    This is the default implementation of the Posix interface. Extending and
+    overriding methods in this class allow you to customize the handling
+    of the basic syscalls on top of which libc operates.
+    </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="sample.libgme.kernel:IKernel"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="sample.libgme.preloader">
+      <apiName>sample.libgme.preloader</apiName>
+      <apiDetail/>
+      <apiClassifier id="sample.libgme.preloader:DefaultPreloader">
+         <apiName>DefaultPreloader</apiName>
+         <shortdesc>
+	By default, this preloader is injected into every flascc-generated SWF.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="DefaultPreloader,sample.libgme.preloader.DefaultPreloader"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>flash.display:MovieClip</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	By default, this preloader is injected into every flascc-generated SWF. After detecting that
+	the SWF has fully loaded, it constructs a new Console object, which should cause the SWF to execute.
+		<p>If a suitable HTTPBackingStore has been linked into the SWF, it will be be created and the SWF will only
+	start once the contents have been downloaded.</p>
+		             <p>To replace the default preloader, you should compile this class to a SWF and tell gcc/g++ to use
+	it with the argument "-swf-preloader=foo.swf". Alternatively, if you don't want a preloader, use "-no-swf-preloader".</p>
+	           </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="flash.display:MovieClip"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="sample.libgme.vfs">
+      <apiName>sample.libgme.vfs</apiName>
+      <apiDetail/>
+      <apiClassifier id="sample.libgme.vfs:HTTPBackingStore">
+         <apiName>HTTPBackingStore</apiName>
+         <shortdesc>
+	A BackingStore that uses a URLLoader to load its files.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="HTTPBackingStore,sample.libgme.vfs.HTTPBackingStore"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>sample.libgme.vfs:InMemoryBackingStore</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	A BackingStore that uses a URLLoader to load its files. This requires a manifest.as file to be
+	generated by the "genfs" tool in the flascc SDK. After being constructed, an instance of this
+	BackingStore will start downloading the files from the manifest. You can listen to the <codeph>progress</codeph>,
+	<codeph>complete</codeph> and <codeph>ioerror</codeph> events to monitor download progress.
+		<p>After a download has completed it is added to the VFS and is available for use.</p>
+	           </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="sample.libgme.vfs:InMemoryBackingStore"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:IBackingStore">
+         <apiName>IBackingStore</apiName>
+         <shortdesc>
+     This interface describes how an underlying data store interacts with
+     the flascc virtual filesystem.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="IBackingStore,sample.libgme.vfs.IBackingStore,PATH_COMPONENT_DOES_NOT_EXIST,PATH_COMPONENT_IS_NOT_DIRECTORY,PATH_VALID,appending,backingStore,backingStoreRelativePath,bytes,callback,console,console,isDirectory,path,position,readOnly,readOnly,readable,writeable,addBackingStore,addBackingStore,addDirectory,addDirectory,addDirectory,addFile,addFile,addFile,addFile,addSpecialFile,addSpecialFile,checkPath,checkPath,closeFile,closeFile,deleteFile,deleteFile,deleteFile,deleteFile,fcntl,flush,flush,flush,getDirectory,getDirectoryEntries,getDirectoryEntries,getFile,getFile,getFileHandleFromFileDescriptor,getFileHandleFromFileDescriptor,getFileHandleFromPath,getFileHandleFromPath,getPaths,getPaths,ioctl,isDirectory,isDirectory,isValidFileDescriptor,isValidFileDescriptor,openFile,openFile,pathExists,pathExists,read,toCanonicalPath,write"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc>
+     This interface describes how an underlying data store interacts with
+     the flascc virtual filesystem. Implement this interface to customize
+     the backing store for the VFS. Backing stores are added to the VFS
+     via the IBackingStore.addBackingStore method.
+     </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="sample.libgme.vfs:InMemoryBackingStore"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:PathUtils">
+         <apiName>PathUtils</apiName>
+         <shortdesc>
+    A collection of path handling related functions
+    </shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="PathUtils,sample.libgme.vfs.PathUtils,addBackingStore,addBackingStore,addDirectory,addDirectory,addDirectory,addFile,addFile,addFile,addFile,addSpecialFile,addSpecialFile,checkPath,checkPath,closeFile,closeFile,deleteFile,deleteFile,deleteFile,deleteFile,fcntl,flush,flush,flush,getDirectory,getDirectoryEntries,getDirectoryEntries,getFile,getFile,getFileHandleFromFileDescriptor,getFileHandleFromFileDescriptor,getFileHandleFromPath,getFileHandleFromPath,getPaths,getPaths,ioctl,isDirectory,isDirectory,isValidFileDescriptor,isValidFileDescriptor,openFile,openFile,pathExists,pathExists,read,toCanonicalPath,write"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+    A collection of path handling related functions
+    </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:DefaultVFS">
+         <apiName>DefaultVFS</apiName>
+         <shortdesc>
+    The default implementation of the IVFS interface
+    </shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="DefaultVFS,sample.libgme.vfs.DefaultVFS,PATH_COMPONENT_DOES_NOT_EXIST,PATH_COMPONENT_IS_NOT_DIRECTORY,PATH_VALID,appending,backingStore,backingStoreRelativePath,bytes,callback,console,console,isDirectory,path,position,readOnly,readOnly,readable,writeable,addBackingStore,addBackingStore,addDirectory,addDirectory,addDirectory,addFile,addFile,addFile,addFile,addSpecialFile,addSpecialFile,checkPath,checkPath,closeFile,closeFile,deleteFile,deleteFile,deleteFile,deleteFile,fcntl,flush,flush,flush,getDirectory,getDirectoryEntries,getDirectoryEntries,getFile,getFile,getFileHandleFromFileDescriptor,getFileHandleFromFileDescriptor,getFileHandleFromPath,getFileHandleFromPath,getPaths,getPaths,ioctl,isDirectory,isDirectory,isValidFileDescriptor,isValidFileDescriptor,openFile,openFile,pathExists,pathExists,read,toCanonicalPath,write"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.vfs:IVFS</apiBaseInterface>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+    The default implementation of the IVFS interface
+    </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="sample.libgme.vfs:IVFS"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:CheckPath">
+         <apiName>CheckPath</apiName>
+         <shortdesc>
+     This enum class contains the results determined by the checkPath method.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="CheckPath,sample.libgme.vfs.CheckPath,PATH_COMPONENT_DOES_NOT_EXIST,PATH_COMPONENT_IS_NOT_DIRECTORY,PATH_VALID,appending,backingStore,backingStoreRelativePath,bytes,callback,console,console,isDirectory,path,position,readOnly,readOnly,readable,writeable"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+     This enum class contains the results determined by the checkPath method.
+     It should be used by implemetations of the IKernel interface but not by end-user code.
+     </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:IVFS">
+         <apiName>IVFS</apiName>
+         <shortdesc>
+     IVFS describes the interface to the flascc virtual filesystem, which
+     controls how the filesystem appears to an flascc application.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="IVFS,sample.libgme.vfs.IVFS,PATH_COMPONENT_DOES_NOT_EXIST,PATH_COMPONENT_IS_NOT_DIRECTORY,PATH_VALID,appending,backingStore,backingStoreRelativePath,bytes,callback,console,console,isDirectory,path,position,readOnly,readOnly,readable,writeable,addBackingStore,addBackingStore,addDirectory,addDirectory,addDirectory,addFile,addFile,addFile,addFile,addSpecialFile,addSpecialFile,checkPath,checkPath,closeFile,closeFile,deleteFile,deleteFile,deleteFile,deleteFile,fcntl,flush,flush,flush,getDirectory,getDirectoryEntries,getDirectoryEntries,getFile,getFile,getFileHandleFromFileDescriptor,getFileHandleFromFileDescriptor,getFileHandleFromPath,getFileHandleFromPath,getPaths,getPaths,ioctl,isDirectory,isDirectory,isValidFileDescriptor,isValidFileDescriptor,openFile,openFile,pathExists,pathExists,read,toCanonicalPath,write"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc>
+     IVFS describes the interface to the flascc virtual filesystem, which
+     controls how the filesystem appears to an flascc application. It is
+     possible for user code to implement this interface, though there
+     is a default implementation, DefaultVFS. The CModule.getVFS method
+     returns the current VFS.
+     </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="sample.libgme.vfs:DefaultVFS"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:FileHandle">
+         <apiName>FileHandle</apiName>
+         <shortdesc>
+     This class represents open files available to an flascc application.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="FileHandle,sample.libgme.vfs.FileHandle,PATH_COMPONENT_DOES_NOT_EXIST,PATH_COMPONENT_IS_NOT_DIRECTORY,PATH_VALID,appending,backingStore,backingStoreRelativePath,bytes,callback,console,console,isDirectory,path,position,readOnly,readOnly,readable,writeable"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+     This class represents open files available to an flascc application. It should be used by implementations of the
+     IKernel interface but not by end-user code.
+     </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:LSOBackingStore">
+         <apiName>LSOBackingStore</apiName>
+         <shortdesc>
+    Extends the InMemoryBackingStore with one that stores and retrieves its data from a Flash
+    Local Shared object (http://www.adobe.com/security/flashplayer/articles/lso/).</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="LSOBackingStore,sample.libgme.vfs.LSOBackingStore,addBackingStore,addBackingStore,addDirectory,addDirectory,addDirectory,addFile,addFile,addFile,addFile,addSpecialFile,addSpecialFile,checkPath,checkPath,closeFile,closeFile,deleteFile,deleteFile,deleteFile,deleteFile,fcntl,flush,flush,flush,getDirectory,getDirectoryEntries,getDirectoryEntries,getFile,getFile,getFileHandleFromFileDescriptor,getFileHandleFromFileDescriptor,getFileHandleFromPath,getFileHandleFromPath,getPaths,getPaths,ioctl,isDirectory,isDirectory,isValidFileDescriptor,isValidFileDescriptor,openFile,openFile,pathExists,pathExists,read,toCanonicalPath,write"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>sample.libgme.vfs:InMemoryBackingStore</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+    Extends the InMemoryBackingStore with one that stores and retrieves its data from a Flash
+    Local Shared object (<xref href="http://www.adobe.com/security/flashplayer/articles/lso/" scope="_new">http://www.adobe.com/security/flashplayer/articles/lso/</xref>).
+    
+    <p>The contents of this VFS will persist until the user clears their LSO cache (which might happen when they clear their browser cache.)</p>
+            </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="sample.libgme.vfs:InMemoryBackingStore"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:InMemoryBackingStore">
+         <apiName>InMemoryBackingStore</apiName>
+         <shortdesc>
+    The InMemoryBackingStore implements IBackingStore with a memory resident
+    mapping between paths and file data stored as a ByteArray.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="InMemoryBackingStore,sample.libgme.vfs.InMemoryBackingStore,PATH_COMPONENT_DOES_NOT_EXIST,PATH_COMPONENT_IS_NOT_DIRECTORY,PATH_VALID,appending,backingStore,backingStoreRelativePath,bytes,callback,console,console,isDirectory,path,position,readOnly,readOnly,readable,writeable,addBackingStore,addBackingStore,addDirectory,addDirectory,addDirectory,addFile,addFile,addFile,addFile,addSpecialFile,addSpecialFile,checkPath,checkPath,closeFile,closeFile,deleteFile,deleteFile,deleteFile,deleteFile,fcntl,flush,flush,flush,getDirectory,getDirectoryEntries,getDirectoryEntries,getFile,getFile,getFileHandleFromFileDescriptor,getFileHandleFromFileDescriptor,getFileHandleFromPath,getFileHandleFromPath,getPaths,getPaths,ioctl,isDirectory,isDirectory,isValidFileDescriptor,isValidFileDescriptor,openFile,openFile,pathExists,pathExists,read,toCanonicalPath,write"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.vfs:IBackingStore</apiBaseInterface>
+               <apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+    The InMemoryBackingStore implements <codeph>IBackingStore</codeph> with a memory resident
+    mapping between paths and file data stored as a ByteArray.
+        <p>This class does not depend on the rest of flascc, so it can be safely
+    used in isolation, such as in a preloader.</p>
+            </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="sample.libgme.vfs:IBackingStore"/>
+               </Implements>
+               <Subclasses>
+                  <class id="sample.libgme.vfs:HTTPBackingStore"/>
+                  <class id="sample.libgme.vfs:LSOBackingStore"/>
+               </Subclasses>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:ISpecialFile">
+         <apiName>ISpecialFile</apiName>
+         <shortdesc>
+	This interface is used by the VFS for special files that must be implemented via code
+	rather than a fixed ByteArray.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="ISpecialFile,sample.libgme.vfs.ISpecialFile,addBackingStore,addBackingStore,addDirectory,addDirectory,addDirectory,addFile,addFile,addFile,addFile,addSpecialFile,addSpecialFile,checkPath,checkPath,closeFile,closeFile,deleteFile,deleteFile,deleteFile,deleteFile,fcntl,flush,flush,flush,getDirectory,getDirectoryEntries,getDirectoryEntries,getFile,getFile,getFileHandleFromFileDescriptor,getFileHandleFromFileDescriptor,getFileHandleFromPath,getFileHandleFromPath,getPaths,getPaths,ioctl,isDirectory,isDirectory,isValidFileDescriptor,isValidFileDescriptor,openFile,openFile,pathExists,pathExists,read,toCanonicalPath,write"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc>
+	This interface is used by the VFS for special files that must be implemented via code
+	rather than a fixed ByteArray. The default Console implementation uses the ISpecialFile
+	interface to handle read/write requests to /dev/tty which corresponds with C/C++ code
+	reading/writting to stdin/stdout.
+		You might also use this interface to implement other special files like "/dev/null" or "/dev/random".
+	</apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="sample.libgme:Console"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="sample.libgme">
+      <apiName>sample.libgme</apiName>
+      <apiDetail/>
+      <apiClassifier id="sample.libgme:CModule">
+         <apiName>CModule</apiName>
+         <shortdesc>
+Contains convenience functions for reading and writting to domainMemory; also manages any flascc-specific global state (for example, the VFS and Posix interface implementations.)
+</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="CModule,sample.libgme.CModule,activeConsole,canUseWorkers,consoleText,kernel,ram,rootSprite,throwWhenOutOfMemory,vfs,callI,callN,consoleWrite,enterFrame,exit,fcntl,free,getPublicSymbol,init,ioctl,malloc,mallocString,read,read16,read32,read8,readBytes,readDouble,readFloat,readIntVector,readString,runningAsWorker,serviceUIRequests,start,startAsync,startBackground,write,write16,write32,write8,writeBytes,writeDouble,writeFloat,writeIntVector,writeString"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+Contains convenience functions for reading and writting to domainMemory; also manages any flascc-specific global state (for example, the VFS and Posix interface implementations.)
+</apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme:Console">
+         <apiName>Console</apiName>
+         <shortdesc>
+  A basic implementation of a console for FlasCC apps.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="Console,sample.libgme.Console,activeConsole,canUseWorkers,consoleText,kernel,ram,rootSprite,throwWhenOutOfMemory,vfs,callI,callN,consoleWrite,enterFrame,exit,fcntl,free,getPublicSymbol,init,ioctl,malloc,mallocString,read,read16,read32,read8,readBytes,readDouble,readFloat,readIntVector,readString,runningAsWorker,serviceUIRequests,start,startAsync,startBackground,write,write16,write32,write8,writeBytes,writeDouble,writeFloat,writeIntVector,writeString"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.vfs:ISpecialFile</apiBaseInterface>
+               <apiBaseClassifier>flash.display:Sprite</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+  A basic implementation of a console for FlasCC apps.
+  The PlayerKernel class delegates to this for things like read/write,
+  so that console output can be displayed in a TextField on the Stage.
+  </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="flash.display:Sprite"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="sample.libgme.vfs:ISpecialFile"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+   </apiPackage>
+</allClasses>

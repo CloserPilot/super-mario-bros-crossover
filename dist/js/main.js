@@ -33,7 +33,7 @@ class SuperMarioBrosCrossover {
         this.lastTime = 0;
     }
 
-    init() {
+    async init() {
         console.log('Initializing Super Mario Bros. Crossover');
 
         // Initialize managers
@@ -52,7 +52,7 @@ class SuperMarioBrosCrossover {
 
         // Load initial level
         const initialLevelID = '1-1';
-        this.levelDataManager.loadLevelData(initialLevelID);
+        await this.levelDataManager.loadLevelData(initialLevelID);
         this.levelManager.loadNewLevel(initialLevelID);
 
         this.startGameLoop(0);

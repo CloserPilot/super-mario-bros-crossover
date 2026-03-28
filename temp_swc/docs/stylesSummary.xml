@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allClasses>
+   <apiPackage id="sample.libgme.kernel">
+      <apiName>sample.libgme.kernel</apiName>
+      <apiClassifier id="sample.libgme.kernel:KernelConstants">
+         <apiName>KernelConstants</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.kernel:IKernel">
+         <apiName>IKernel</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.kernel:PlayerKernel">
+         <apiName>PlayerKernel</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.kernel:IKernel</apiBaseInterface>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="sample.libgme.preloader">
+      <apiName>sample.libgme.preloader</apiName>
+      <apiClassifier id="sample.libgme.preloader:DefaultPreloader">
+         <apiName>DefaultPreloader</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>flash.display:MovieClip</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="sample.libgme.vfs">
+      <apiName>sample.libgme.vfs</apiName>
+      <apiClassifier id="sample.libgme.vfs:HTTPBackingStore">
+         <apiName>HTTPBackingStore</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>sample.libgme.vfs:InMemoryBackingStore</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:IBackingStore">
+         <apiName>IBackingStore</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:PathUtils">
+         <apiName>PathUtils</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:DefaultVFS">
+         <apiName>DefaultVFS</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.vfs:IVFS</apiBaseInterface>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:CheckPath">
+         <apiName>CheckPath</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:IVFS">
+         <apiName>IVFS</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:FileHandle">
+         <apiName>FileHandle</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:LSOBackingStore">
+         <apiName>LSOBackingStore</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>sample.libgme.vfs:InMemoryBackingStore</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:InMemoryBackingStore">
+         <apiName>InMemoryBackingStore</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.vfs:IBackingStore</apiBaseInterface>
+               <apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme.vfs:ISpecialFile">
+         <apiName>ISpecialFile</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="sample.libgme">
+      <apiName>sample.libgme</apiName>
+      <apiClassifier id="sample.libgme:CModule">
+         <apiName>CModule</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="sample.libgme:Console">
+         <apiName>Console</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>sample.libgme.vfs:ISpecialFile</apiBaseInterface>
+               <apiBaseClassifier>flash.display:Sprite</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+   </apiPackage>
+</allClasses>

@@ -5,6 +5,7 @@ export default class Level {
         this.levelData = levelData;
         this.areaStatsArr = areaStatsArr;
         this.newLev = newLev;
+        this.TILE_SIZE = 16;
 
         // Simulate the passage of time, this is handled by the game loop
         this.dt = 1 / 60;
@@ -14,7 +15,8 @@ export default class Level {
 
     initiate() {
         console.log('Initiating level...');
-        // TODO: Implement the full initiation of the level, including player creation, building the level, etc.
+        // The original ActionScript code adds the level to the display list.
+        // In our JavaScript version, the ScreenManager will handle rendering.
     }
 
     update(dt) {
@@ -22,12 +24,30 @@ export default class Level {
     }
 
     draw(ctx) {
-        // TODO: Implement the level drawing logic
+        if (!this.levelData || !this.levelData.map) {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.fillStyle = 'white';
+            ctx.font = '20px Arial';
+            ctx.fillText('Error: Level data not loaded!', 20, 40);
+            return;
+        }
+
         ctx.fillStyle = 'blue';
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        for (let row = 0; row < this.levelData.map.length; row++) {
+            for (let col = 0; col < this.levelData.map[row].length; col++) {
+                const tile = this.levelData.map[row][col];
+                if (tile !== '0') {
+                    ctx.fillStyle = 'red';
+                    ctx.fillRect(col * this.TILE_SIZE, row * this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE);
+                }
+            }
+        }
+
         ctx.fillStyle = 'white';
         ctx.font = '20px Arial';
         ctx.fillText('Level: ' + this.levelID, 20, 40);
-        ctx.fillText('Loading level data...', 20, 80);
     }
 }
