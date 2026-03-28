@@ -28,7 +28,9 @@ class ScreenManager extends MainManager {
         this.resourcesToLoad = 0;
         this.loadedResources = 0;
 
-        this.currentScreen.initiate(this.game);
+        if (this.currentScreen) {
+            this.currentScreen.initiate(this.game);
+        }
 
         // If no resources to load, finish loading immediately
         if (this.resourcesToLoad === 0) {
@@ -53,7 +55,9 @@ class ScreenManager extends MainManager {
 
     update(dt) {
         if (this.isLoading) return;
-        if (this.currentScreen) {
+        if (this.game.level) {
+            this.game.level.update(dt);
+        } else if (this.currentScreen) {
             this.currentScreen.update(dt);
         }
     }
@@ -70,7 +74,9 @@ class ScreenManager extends MainManager {
             return;
         }
 
-        if (this.currentScreen) {
+        if (this.game.level) {
+            this.game.level.draw(ctx);
+        } else if (this.currentScreen) {
             this.currentScreen.draw(ctx);
         }
     }

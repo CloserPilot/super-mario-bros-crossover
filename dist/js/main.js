@@ -6,10 +6,10 @@ import EventManager from './managers/EventManager.js';
 import SoundManager from './managers/SoundManager.js';
 import GraphicsManager from './managers/GraphicsManager.js';
 import LevelManager from './managers/LevelManager.js';
+import LevelDataManager from './managers/LevelDataManager.js';
 import MessageBoxManager from './managers/MessageBoxManager.js';
 import TextManager from './managers/TextManager.js';
 import TutorialManager from './managers/TutorialManager.js';
-import TitleScreen from './screens/TitleScreen.js';
 
 class SuperMarioBrosCrossover {
     constructor() {
@@ -25,6 +25,7 @@ class SuperMarioBrosCrossover {
         this.soundManager = SoundManager;
         this.graphicsManager = GraphicsManager;
         this.levelManager = LevelManager;
+        this.levelDataManager = LevelDataManager;
         this.messageBoxManager = MessageBoxManager;
         this.textManager = TextManager;
         this.tutorialManager = TutorialManager;
@@ -44,12 +45,15 @@ class SuperMarioBrosCrossover {
         this.soundManager.initiate(this);
         this.graphicsManager.initiate(this);
         this.levelManager.initiate(this);
+        this.levelDataManager.initiate(this);
         this.messageBoxManager.initiate(this);
         this.textManager.initiate(this);
         this.tutorialManager.initiate(this);
 
-        // Set the initial screen
-        this.screenManager.changeScreen(new TitleScreen());
+        // Load initial level
+        const initialLevelID = '1-1';
+        this.levelDataManager.loadLevelData(initialLevelID);
+        this.levelManager.loadNewLevel(initialLevelID);
 
         this.startGameLoop(0);
     }
