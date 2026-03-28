@@ -18,8 +18,7 @@ class LevelDataManager extends MainManager {
     async loadLevelData(levelID) {
         if (!this.levelDataXml) {
             try {
-                // Correct path relative to index.html in the root
-                const response = await fetch('assets/documents/levelDataSmb.xml');
+                const response = await fetch('../assets/documents/levelDataSmb.xml');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -60,7 +59,6 @@ class LevelDataManager extends MainManager {
             return null;
         }
         
-        // Improved map parsing
         const mapText = mapNode.textContent.trim();
         const mapRows = mapText.split('],');
         const mapData = mapRows.map(row => 
